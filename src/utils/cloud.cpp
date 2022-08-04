@@ -58,7 +58,7 @@ void Cloud::TransformInPlace(const Pose& pose) {
 Cloud::Ptr Cloud::Transform(const Pose& pose) const {
   Cloud cloud_copy(*this);
   cloud_copy.TransformInPlace(pose);
-  return make_shared<Cloud>(cloud_copy);
+  return boost::make_shared<Cloud>(cloud_copy);
 }
 
 void Cloud::SetProjectionPtr(typename CloudProjection::Ptr proj_ptr) {
@@ -114,7 +114,7 @@ typename pcl::PointCloud<pcl::PointXYZL>::Ptr Cloud::ToPcl() const {
     pcl_point.label = point.ring();
     pcl_cloud.push_back(pcl_point);
   }
-  return make_shared<PclCloud>(pcl_cloud);
+  return boost::make_shared<PclCloud>(pcl_cloud);
 }
 
 template <>
@@ -125,7 +125,7 @@ Cloud::Ptr Cloud::FromPcl(const pcl::PointCloud<pcl::PointXYZL>& pcl_cloud) {
     point.ring() = pcl_point.label;
     cloud.push_back(point);
   }
-  return make_shared<Cloud>(cloud);
+  return boost::make_shared<Cloud>(cloud);
 }
 
 #endif  // PCL_FOUND

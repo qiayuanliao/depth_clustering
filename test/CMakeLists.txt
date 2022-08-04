@@ -2,6 +2,7 @@
 #############
 ## Testing ##
 #############
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 # Add gtest based cpp test target and link libraries
 
